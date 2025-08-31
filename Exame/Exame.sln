@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.API", "..\Exame.API\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Services", "..\Exame.Services\Exame.Services.csproj", "{C25EA06B-E7FE-48B8-A110-ACE618D532A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Shared", "..\Exame.Shared\Exame.Shared.csproj", "{B45649E7-6E57-44AA-AFF6-19C588327899}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{C25EA06B-E7FE-48B8-A110-ACE618D532A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C25EA06B-E7FE-48B8-A110-ACE618D532A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C25EA06B-E7FE-48B8-A110-ACE618D532A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B45649E7-6E57-44AA-AFF6-19C588327899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45649E7-6E57-44AA-AFF6-19C588327899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45649E7-6E57-44AA-AFF6-19C588327899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45649E7-6E57-44AA-AFF6-19C588327899}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
