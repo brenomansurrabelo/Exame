@@ -1,11 +1,12 @@
-using Exame.Services;
+﻿using Exame.Services;
 using Exame.Shared;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exame.API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
         private readonly IUsuarioService _usuarioService;
@@ -21,33 +22,92 @@ namespace Exame.API.Controllers
             var usuario = await _usuarioService.GetByIdAsync(id);
 
             if (usuario == null)
-                return NotFound($"Usu�rio com ID {id} n�o encontrado");
+                return NotFound($"Usuário com ID {id} não encontrado");
 
             return Ok(usuario);
         }
 
         [HttpGet]
-        public async Task<IEnumerable<UsuarioDTO>> GetAll()
+        public async Task<ActionResult<IEnumerable<UsuarioDTO>>> GetAll()
         {
-            return await _usuarioService.GetAllAsync();
+            var usuarios = await _usuarioService.GetAllAsync();
+            
+            return Ok(usuarios); 
+        }
+
+        [HttpGet]
+        [Route("find")]
+        public async Task<ActionResult<IEnumerable<UsuarioDTO>>> Get(
+            [FromQuery] string nome,
+            [FromQuery] string endereco)
+        {
+            var usuarios = await _usuarioService.Find(
+                usuario =>
+                    usuario.Nome.Contains(nome) &&
+                    usuario.Endereco.Contains(endereco))
+                .ToListAsync();
+
+            return Ok(usuarios);
         }
 
         [HttpPost]
-        public async Task Create([FromBody] UsuarioDTO dto)
+        public async Task<ActionResult<UsuarioDTO>> Create([FromBody] UsuarioDTO dto) 
         {
-            await _usuarioService.CreateAsync(dto);
+            if (!ModelState.IsValid) 
+                return BadRequest(ModelState);
+
+            try
+            {
+                await _usuarioService.CreateAsync(dto);
+
+                return CreatedAtAction(nameof(GetById), new { id = dto.Id }, dto); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao criar usuário: {ex.Message}"); 
+            }
         }
 
-        [HttpPut]
-        public async Task Update([FromBody] UsuarioDTO dto)
+        [HttpPut("{id}")]
+        public async Task<ActionResult<UsuarioDTO>> Update(Guid id, [FromBody] UsuarioDTO dto)
         {
-            await _usuarioService.UpdateAsync(dto);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            dto.Id = id;
+
+            try
+            {
+                await _usuarioService.UpdateAsync(dto);
+                
+                return Ok(); 
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message); 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao atualizar usuário: {ex.Message}");
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(Guid id)
+        public async Task<ActionResult> Delete(Guid id) 
         {
-            await _usuarioService.DeleteAsync(id);
+            try
+            {
+                await _usuarioService.DeleteAsync(id);
+                return NoContent(); 
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Erro ao excluir usuário: {ex.Message}");
+            }
         }
     }
 }

@@ -128,19 +128,18 @@ namespace Exame.Services
             }
         }
 
-        public IQueryable<UsuarioDTO> Find(Expression<Func<UsuarioDTO, bool>> predicate)
+        public IQueryable<UsuarioDTO> Find(Expression<Func<Usuario, bool>> predicate)
         {
-            throw new NotImplementedException();
-        }
-
-        Task IService<UsuarioDTO>.CreateAsync(UsuarioDTO dto)
-        {
-            return CreateAsync(dto);
-        }
-
-        Task IService<UsuarioDTO>.UpdateAsync(UsuarioDTO dto)
-        {
-            return UpdateAsync(dto);
+            return _uow.Repository<Usuario>()
+                .Find(predicate)
+                .Select(u => new UsuarioDTO
+                {
+                    Id = u.Id,
+                    Nome = u.Nome,
+                    Endereco = u.Endereco,
+                    DataNascimento = u.DataNascimento,
+                    Idade = u.CalcularIdade()
+                });
         }
     }
 }

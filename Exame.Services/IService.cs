@@ -2,17 +2,17 @@
 
 namespace Exame.Services
 {
-    public interface IService<T> where T : class
+    public interface IService<TEntity, TDTO> where TEntity : class
     {
-        public Task<T?> GetByIdAsync(Guid id);
+        public Task<TDTO?> GetByIdAsync(Guid id);
 
-        public Task<IEnumerable<T>> GetAllAsync();
+        public Task<IEnumerable<TDTO>> GetAllAsync();
 
-        public IQueryable<T> Find(Expression<Func<T, bool>> predicate);
+        public IQueryable<TDTO> Find(Expression<Func<TEntity, bool>> predicate);
 
-        public Task CreateAsync(T dto);
+        public Task<TDTO> CreateAsync(TDTO dto);
 
-        public Task UpdateAsync(T dto);
+        public Task<TDTO> UpdateAsync(TDTO dto);
 
         public Task DeleteAsync(Guid id);
     }
