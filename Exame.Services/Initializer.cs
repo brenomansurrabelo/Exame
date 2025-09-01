@@ -9,7 +9,7 @@ namespace Exame.Services
     {
         public static void AddApplicationServices(this IServiceCollection services)
         {
-            services.AddScoped<IService<Usuario>, UsuarioService>();
+            services.AddScoped<IUsuarioService, UsuarioService>();
         }
     }
 }

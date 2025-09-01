@@ -10,10 +10,10 @@ namespace Exame.Services
 
         public IQueryable<T> Find(Expression<Func<T, bool>> predicate);
 
-        public Task AddAsync(T entity);
+        public Task CreateAsync(T dto);
 
-        public Task Update(T entity);
+        public Task UpdateAsync(T dto);
 
-        public Task Remove(Guid id);
+        public Task DeleteAsync(Guid id);
     }
 }
