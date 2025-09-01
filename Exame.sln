@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.36105.23 d17.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Domain", "..\Exame.Domain\Exame.Domain.csproj", "{04F8CB6A-E81E-4FD6-8E02-BE4FB4307B21}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Domain", "Exame.Domain\Exame.Domain.csproj", "{04F8CB6A-E81E-4FD6-8E02-BE4FB4307B21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Infrastructure", "..\Exame.Infrastructure\Exame.Infrastructure.csproj", "{6E19025D-B098-484E-8FE3-4340FBFD1F59}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Infrastructure", "Exame.Infrastructure\Exame.Infrastructure.csproj", "{6E19025D-B098-484E-8FE3-4340FBFD1F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.API", "..\Exame.API\Exame.API.csproj", "{149EE86E-2C59-4F2B-9443-499F5F34D121}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.API", "Exame.API\Exame.API.csproj", "{149EE86E-2C59-4F2B-9443-499F5F34D121}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Services", "..\Exame.Services\Exame.Services.csproj", "{C25EA06B-E7FE-48B8-A110-ACE618D532A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Services", "Exame.Services\Exame.Services.csproj", "{C25EA06B-E7FE-48B8-A110-ACE618D532A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Shared", "..\Exame.Shared\Exame.Shared.csproj", "{B45649E7-6E57-44AA-AFF6-19C588327899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exame.Shared", "Exame.Shared\Exame.Shared.csproj", "{B45649E7-6E57-44AA-AFF6-19C588327899}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
