@@ -8,8 +8,6 @@ namespace Exame.Services
 
         public Task<IEnumerable<TDTO>> GetAllAsync();
 
-        public IQueryable<TDTO> Find(Expression<Func<TEntity, bool>> predicate);
-
         public Task<TDTO> CreateAsync(TDTO dto);
 
         public Task<TDTO> UpdateAsync(TDTO dto);

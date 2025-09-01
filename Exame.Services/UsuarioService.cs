@@ -128,18 +128,26 @@ namespace Exame.Services
             }
         }
 
-        public IQueryable<UsuarioDTO> Find(Expression<Func<Usuario, bool>> predicate)
+        public async Task<IEnumerable<UsuarioDTO>> Find(string? nome = null, string? endereco = null)
         {
-            return _uow.Repository<Usuario>()
-                .Find(predicate)
-                .Select(u => new UsuarioDTO
-                {
-                    Id = u.Id,
-                    Nome = u.Nome,
-                    Endereco = u.Endereco,
-                    DataNascimento = u.DataNascimento,
-                    Idade = u.CalcularIdade()
-                });
+            var query = _uow.Repository<Usuario>().Find(u => true);
+
+            if (!string.IsNullOrWhiteSpace(nome))
+                query = query.Where(u => u.Nome.Contains(nome));
+
+            if (!string.IsNullOrWhiteSpace(endereco))
+                query = query.Where(u => u.Endereco.Contains(endereco));
+
+            var usuarios = await query.ToListAsync();
+
+            return usuarios.Select(u => new UsuarioDTO
+            {
+                Id = u.Id,
+                Nome = u.Nome,
+                Endereco = u.Endereco,
+                DataNascimento = u.DataNascimento,
+                Idade = u.CalcularIdade()
+            });
         }
     }
 }

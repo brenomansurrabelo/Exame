@@ -37,15 +37,9 @@ namespace Exame.API.Controllers
 
         [HttpGet]
         [Route("find")]
-        public async Task<ActionResult<IEnumerable<UsuarioDTO>>> Get(
-            [FromQuery] string nome,
-            [FromQuery] string endereco)
+        public async Task<ActionResult<IEnumerable<UsuarioDTO>>> Get([FromQuery] string? nome, [FromQuery] string? endereco)
         {
-            var usuarios = await _usuarioService.Find(
-                usuario =>
-                    usuario.Nome.Contains(nome) &&
-                    usuario.Endereco.Contains(endereco))
-                .ToListAsync();
+            var usuarios = await _usuarioService.Find(nome, endereco);
 
             return Ok(usuarios);
         }
